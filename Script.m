@@ -8,17 +8,13 @@ clc;                          	% clear the command terminal
  
 %% Import data
 
-xIMUdata = xIMUdataClass('LoggedData/LoggedData');
+samplePeriod = 1/100;
 
-samplePeriod = 1/256;
+gyr = load('imuGyro.mat');
+acc = load('imuAcc.mat');
+gyr=gyr.imuGyro';
+acc=acc.imuAcc';
 
-gyr = [xIMUdata.CalInertialAndMagneticData.Gyroscope.X...
-       xIMUdata.CalInertialAndMagneticData.Gyroscope.Y...
-       xIMUdata.CalInertialAndMagneticData.Gyroscope.Z];        % gyroscope
-acc = [xIMUdata.CalInertialAndMagneticData.Accelerometer.X...
-       xIMUdata.CalInertialAndMagneticData.Accelerometer.Y...
-       xIMUdata.CalInertialAndMagneticData.Accelerometer.Z];	% accelerometer
-  
 % Plot
 figure('NumberTitle', 'off', 'Name', 'Gyroscope');
 hold on;
@@ -112,6 +108,7 @@ order = 1;
 filtCutOff = 0.1;
 [b, a] = butter(order, (2*filtCutOff)/(1/samplePeriod), 'high');
 linVelHP = filtfilt(b, a, linVel);
+
 
 % Plot
 figure('NumberTitle', 'off', 'Name', 'High-pass filtered Linear Velocity');
