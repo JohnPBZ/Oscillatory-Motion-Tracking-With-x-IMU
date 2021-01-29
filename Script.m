@@ -12,8 +12,8 @@ samplePeriod = 1/100;
 
 gyr = load('imuGyro.mat');
 acc = load('imuAcc.mat');
-gyr=gyr.imuGyro';
-acc=acc.imuAcc';
+gyr=gyr.imuGyro;
+acc=acc.imuAcc;
 
 % Plot
 figure('NumberTitle', 'off', 'Name', 'Gyroscope');
@@ -69,8 +69,8 @@ legend('X', 'Y', 'Z');
 
 %% Calculate linear acceleration in Earth frame (subtracting gravity)
 
-linAcc = tcAcc - [zeros(length(tcAcc), 1), zeros(length(tcAcc), 1), ones(length(tcAcc), 1)];
-linAcc = linAcc * 9.81;     % convert from 'g' to m/s/s
+linAcc = tcAcc - [zeros(length(tcAcc), 1), zeros(length(tcAcc), 1), ones(length(tcAcc), 1)* 9.81];
+% linAcc = linAcc * 9.81;     % convert from 'g' to m/s/s
 
 % Plot
 figure('NumberTitle', 'off', 'Name', 'Linear Acceleration');
