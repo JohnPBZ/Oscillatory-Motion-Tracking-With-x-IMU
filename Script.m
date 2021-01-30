@@ -160,7 +160,7 @@ legend('X', 'Y', 'Z');
 
 %% Play animation
 
-SamplePlotFreq = 8;
+SamplePlotFreq = 1;
 
 SixDOFanimation(linPosHP, R, ...
                 'SamplePlotFreq', SamplePlotFreq, 'Trail', 'Off', ...
